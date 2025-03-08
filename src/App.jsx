@@ -1,4 +1,4 @@
-import { Header } from './components/Header.jsx'
+import { Header } from "./components/Header.jsx";
 
 export function App() {
   return (
@@ -6,5 +6,5 @@ export function App() {
       <Header />
       <h1>Feed</h1>
     </>
-  )
+  );
 }
