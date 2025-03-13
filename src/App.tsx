@@ -1,35 +1,85 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Header } from "./components/Header.jsx";
+import { Sidebar } from "./components/Sidebar.jsx";
+import { Post } from "./components/Post.jsx";
 
-function App() {
-  const [count, setCount] = useState(0)
+import "./global.css";
 
+import styles from "./App.module.css";
+
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=50&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      name: "Jane Cooper",
+      role: "Dev Front-End",
+    },
+    publishedAt: new Date("2022-05-11 08:13:38"),
+    content: [
+      {
+        type: "paragraph",
+        content: "Fala galeraa 👋",
+      },
+      {
+        type: "paragraph",
+        content:
+          "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+      },
+      {
+        type: "link",
+        content: "👉 jane.design/doctorcare",
+      },
+    ],
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl:
+        "https://images.unsplash.com/photo-1619895862022-09114b41f16f?q=50&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      name: "Cooper Jane",
+      role: "Dev Front-End",
+    },
+    publishedAt: new Date("2022-05-28 08:13:38"),
+    content: [
+      {
+        type: "paragraph",
+        content: "Fala galeraa 👋",
+      },
+      {
+        type: "paragraph",
+        content:
+          "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+      },
+      {
+        type: "link",
+        content: "👉 jane.design/doctorcare",
+      },
+    ],
+  },
+];
+
+export function App() {
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <Header />
 
-export default App
+      <div className={styles.wrapper}>
+        <Sidebar />
+
+        <main>
+          {posts.map((post) => {
+            return (
+              <Post
+                key={post.id}
+                author={post.author}
+                content={post.content}
+                publishedAt={post.publishedAt}
+              />
+            );
+          })}
+        </main>
+      </div>
+    </>
+  );
+}
